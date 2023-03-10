@@ -13,7 +13,7 @@
             <div class="h-3"></div>
             <button type="button" class="w-full bg-gradient-to-r from-violet-500 to-fuchsia-500 p-2 rounded-xl text-lg">
                 <strong>
-                    Add This Todo !
+                    Make Todo !
                 </strong>
             </button>
             <div class="h-5"></div>
@@ -29,11 +29,13 @@
                     </strong>
                 </h3>
             </div>
-            <div class="w-full text-lg border-dashed border-2 p-2 rounded-lg text-white">
-                <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
-                <label for="vehicle1"> Playing MSFS</label><br>
+            <div v-for="item in 6">
+                <div class="w-full text-lg border-solid border-violet-500 border-2 p-2 rounded-lg text-white">
+                    <input type="checkbox" id="item{{ item }}" name="item{{ item }}" value="item{{ item }}">
+                    <label for="item{{ item }}"> Playing MSFS {{ item }}</label><br>
+                </div>
+                <div class="h-2"></div>
             </div>
-            <div class="h-2"></div>
         </div>
     </div>
 </template>
