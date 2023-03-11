@@ -50,7 +50,8 @@
                         <input type="text"
                             class="bg-white p-1 h-full w-7 float-left text-violet-500 rounded-md text-center font-bold"
                             v-else disabled>
-                        <label for="item{{ todo.id }}" :class="{ doneYet: todo.doneYet }" class="pl-4">
+                        <label for="item{{ todo.id }}"
+                            :class="['pl-4', todo.doneYet ? 'line-through decoration-pink-500 decoration-2 text-gray-200/20' : '']">
                             {{ todo.text }}
                         </label>
                     </div>
