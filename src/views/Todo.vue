@@ -39,19 +39,29 @@
             </div>
 
             <!-- mulai perulangan -->
-            <div v-for="todo in todos" :key="todo.id">
-                <div class="w-full text-lg border-solid border-violet-500 border-2 p-2 rounded-lg text-white">
-                    <input type="checkbox" id="item{{ todo.id }}" name="item{{ todo.id }}" value="item{{ todo.id }}">
-                    <label for="item{{ todo.id }}">
-                        &nbsp;
+            <div v-for="todo in todos" :key="todo.id" >
+                <div class="flex flex-row">
+                    <div class="basis-5/6 h-12 text-lg border-solid border-violet-500 border-2 p-2 rounded-lg text-white">
+                        <!-- <input type="checkbox" id="item{{ todo.id }}" name="item{{ todo.id }}" value="item{{ todo.id }}"> -->
+                        <button type="button" class="bg-white p-1 h-full w-6 float-left text-violet-500 rounded-md"
+                            @click="removeTodo(todo)">
+                            <strong>v</strong>
+                        </button>
+                        <label for="item{{ todo.id }}">
+                            &nbsp;
                             {{ todo.text }}
-                    </label>
-                    <button type="button" class="bg-fuchsia-800 p-1 h-full w-10 float-right text-white rounded-md"
-                        @click="removeTodo(todo)">
-                        <strong>X</strong>
-                    </button>
+                        </label>
+                    </div>
+                    <div class="basis-1/6 h-12 text-lg pl-1 rounded-lg text-white">
+                        <button type="button" class="bg-fuchsia-800 p-1 h-full w-full float-right text-white rounded-md"
+                            @click="removeTodo(todo)">
+                            <strong>X</strong>
+                        </button>
+                    </div>
                 </div>
-                <div class="h-2"></div>
+                <div class="flex flex-row">
+                    <div class="w-full h-2"></div>
+                </div>
             </div>
             <!-- tutup perulangan -->
         </div>
