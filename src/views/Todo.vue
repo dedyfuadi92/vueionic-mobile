@@ -41,7 +41,7 @@
             <!-- mulai perulangan -->
             <div v-for="todo in todos" :key="todo.id">
                 <div class="flex flex-row">
-                    <div @click="$event => doneTodo(todo.id)"
+                    <div @click="$event => doneTodo(todo)"
                         class="basis-5/6 h-12 text-lg border-solid border-violet-500 border-b-2 border-l-2 border-t-2  p-2 rounded-tl-lg rounded-bl-lg text-white">
                         <!-- <input type="checkbox" id="item{{ todo.id }}" name="item{{ todo.id }}" value="item{{ todo.id }}"> -->
                         <input type="text"
@@ -77,16 +77,20 @@ const newTodo = ref('')
 const todos = ref([])
 function addTodo() {
     if (newTodo.value != '') {
-        todos.value.push({ id: id++, text: newTodo.value, doneYet: false })
+        todos.value.push({ id: id, text: newTodo.value, doneYet: false })
         newTodo.value = ''
+        id++
     }
 }
 function doneTodo(id) {
-    // console.log(id, todos.value[id].text);
-    todos.value[id].doneYet = !todos.value[id].doneYet
+    let index = todos.value.indexOf(id)
+    console.log(index)
+    todos.value[index].doneYet = !todos.value[index].doneYet
 }
-function removeTodo(todo) {
-    todos.value = todos.value.filter((t) => t !== todo)
+function removeTodo(id) {
+    let index = todos.value.indexOf(id)
+    console.log(index)
+    this.todos.splice(index, 1)
 }
 </script>
 <style scoped>
