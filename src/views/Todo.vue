@@ -50,7 +50,11 @@
                         <input type="text"
                             class="bg-white p-1 h-full w-7 float-left text-violet-500 rounded-md text-center font-bold"
                             v-else disabled>
-                        <label for="item{{ todo.id }}" :class="{ doneYet: todo.doneYet }" class="pl-4">
+                        <!-- <label for="item{{ todo.id }}" :class="{ doneYet: todo.doneYet }" class="pl-4">
+                            {{ todo.text }}
+                        </label> -->
+                        <!-- untuk binding class lebih simple kita satukan aja pakai shorthand if  -->
+                         <label   :class="['pl-4', todo.doneYet ? 'line-through decoration-pink-500 decoration-2 text-gray-200/20' : '']">
                             {{ todo.text }}
                         </label>
                     </div>
@@ -79,18 +83,29 @@ function addTodo() {
     if (newTodo.value != '') {
         todos.value.push({ id: id++, text: newTodo.value, doneYet: false })
         newTodo.value = ''
+        
     }
+
+    console.log(todos.value)
 }
 function doneTodo(id) {
+    console.log(id)
     // console.log(id, todos.value[id].text);
-    todos.value[id].doneYet = !todos.value[id].doneYet
+    // todos.value[id].doneYet = !todos.value[id].doneYet
+
+    // ini harus di filter terlebih dahulu data dalam arraynya soalnya ada bug saat salah satu data ku hapus terus di tambahl lagi todo
+    // object barunya gak ke detect
+   const filter = todos.value.filter($item => $item.id == id)
+   // seteleah itu valuenya tinggal di ubah kalau datanya ketemu
+     filter[0].doneYet = !filter[0].doneYet 
 }
 function removeTodo(todo) {
     todos.value = todos.value.filter((t) => t !== todo)
 }
 </script>
 <style scoped>
+/* ini bisa di hapus dan diganti dengan class binding  */
 .doneYet {
-    text-decoration: line-through;
+    text-decoration: line-through; 
 }
 </style>
