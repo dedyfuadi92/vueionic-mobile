@@ -1,6 +1,7 @@
 <template>
     <div class="w-full h-screen mx-auto bg-slate-800 text-white flex justify-center items-start px-6 pt-4 overflow-auto">
         <div class="w-full">
+            <!-- bagian header -->
             <div class="w-full flex justify-center">
                 <h3>
                     <strong>
@@ -8,6 +9,9 @@
                     </strong>
                 </h3>
             </div>
+            <!-- tutup header -->
+
+            <!-- bagian form input -->
             <input v-model="newTodo" type="text" name="newTodo" id="newTodo"
                 class="w-full text-lg text-violet-800 p-2 rounded-xl" maxlength="20" minlength="1" required
                 placeholder="let's doing something great...">
@@ -18,6 +22,8 @@
                     Make Todo !
                 </strong>
             </button>
+            <!-- tutup form input -->
+
             <div class="h-5"></div>
             <div class="w-full flex justify-center">
                 <div class="w-1/2 h-1 bg-fuchsia-500 rounded-lg">
@@ -31,14 +37,23 @@
                     </strong>
                 </h3>
             </div>
+
+            <!-- mulai perulangan -->
             <div v-for="todo in todos" :key="todo.id">
                 <div class="w-full text-lg border-solid border-violet-500 border-2 p-2 rounded-lg text-white">
                     <input type="checkbox" id="item{{ todo.id }}" name="item{{ todo.id }}" value="item{{ todo.id }}">
-                    <label for="item{{ todo.id }}">&nbsp;{{ todo.text }}<button type="button"
-                            class="bg-fuchsia-800 p-2 float-right text-white" @click="removeTodo(todo)">X</button></label>
+                    <label for="item{{ todo.id }}">
+                        &nbsp;
+                            {{ todo.text }}
+                    </label>
+                    <button type="button" class="bg-fuchsia-800 p-1 h-full w-10 float-right text-white rounded-md"
+                        @click="removeTodo(todo)">
+                        <strong>X</strong>
+                    </button>
                 </div>
                 <div class="h-2"></div>
             </div>
+            <!-- tutup perulangan -->
         </div>
     </div>
 </template>
